@@ -1,8 +1,8 @@
+import "./Chat.css"
 
-
-function Chat({msg})
+function Chat(props)
 {
-    return <p>{msg}</p>
+    return <div className="chatMsg">{props.msg}</div>
 };
 
 
