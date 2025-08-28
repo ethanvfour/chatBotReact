@@ -1,0 +1,38 @@
+{
+    "good-responses": [
+        "Thank you so much!",
+        "I appreciate your kindness.",
+        "That means a lot to me, thank you!",
+        "Thanks for your kind words.",
+        "I'm grateful for your compliment.",
+        "Thank you, that's very encouraging.",
+        "I really appreciate it!",
+        "Thanks, you made my day!",
+        "Thank you for noticing.",
+        "Your words are very uplifting, thank you!"
+    ],
+    "bad-responses": [
+        "Why would you say something like that?",
+        "That's not very nice.",
+        "I wish you wouldn't say things like that.",
+        "That was hurtful.",
+        "Please be more considerate.",
+        "I don't appreciate those words.",
+        "That makes me feel bad.",
+        "Let's try to be kinder.",
+        "There's no need for negativity.",
+        "I hope we can be more positive."
+    ],
+    "confused-responses": [
+        "I'm not sure I understand.",
+        "Could you please clarify?",
+        "I'm a bit confused by that.",
+        "Can you explain what you mean?",
+        "Sorry, I didn't get that.",
+        "I'm not certain what you're referring to.",
+        "Could you rephrase that?",
+        "I'm having trouble understanding.",
+        "Can you give me more details?",
+        "I'm not sure what you mean."
+    ]
+}

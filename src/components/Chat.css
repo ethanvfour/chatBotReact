@@ -6,4 +6,12 @@
     border-radius: 20px;
     color : black;
     padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.person
+{
+    align-self:self-end;
 }

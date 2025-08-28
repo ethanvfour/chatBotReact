@@ -1,6 +1,17 @@
 #Title {
   margin-bottom: 25px;
+  border : 5px solid hwb(0 48% 52%);
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding : 5px;
+  transition: border 1s;
 }
+
+#Title:hover
+{
+  border : 5px solid hwb(0 100% 0%);
+}
+
 
 #Chat-Talking {
   height: 80%;
@@ -14,7 +25,15 @@
 #Chat-Area {
   height: 20%;
   width: 90vw;
-  padding : 5px
+  padding : 5px;
+  display: flex;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+}
+
+#Chat-Area *
+{
+  height:75%;
 }
 
 #temp {
@@ -23,6 +42,17 @@
   min-width: 80%;
   border: 4px solid black;
   background-color: white;
+}
+
+#chat-msg
+{
+  width: 80%;
+  resize: none;
+}
+
+#chat-btn
+{
+  width: 20%;
 }
 
 #Screen {
