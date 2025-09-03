@@ -1,15 +1,15 @@
 #Title {
   margin-bottom: 25px;
-  border : 5px solid hwb(0 48% 52%);
+  border : 2px solid hwb(0 48% 52%);
   border-radius: 20px;
   box-sizing: border-box;
   padding : 5px;
-  transition: border 1s;
+  transition: border 0.2s ease-in-out;
 }
 
 #Title:hover
 {
-  border : 5px solid hwb(0 100% 0%);
+  border-color: hwb(0 86% 14%);
 }
 
 
@@ -20,6 +20,7 @@
   padding : 5px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 #Chat-Area {

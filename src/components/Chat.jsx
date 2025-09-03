@@ -7,9 +7,10 @@ function Chat(props) {
       <div id="Image_Portion">
         {props.name}
       </div>
-      <hr></hr>
-      <br></br>
-      {props.msg}
+      <hr></hr>  
+      <div id="Chat_Portion">
+        {props.msg}
+      </div>
     </div>
   );
 }

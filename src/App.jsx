@@ -10,7 +10,7 @@ const botName = "ChatBot";
 
 function App() {
   const btnElement = useRef(0);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("Guest");
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -19,22 +19,31 @@ function App() {
       user: botName,
     },
   ]);
+  const [responses, setResponses] = useState(null);
 
-  const getBotResponse = async () =>
+  useEffect(() => {
     fetch("/assets/index.json")
       .then((d) => d.json())
-      .then((json) => {
-        let category = Object.keys(json);
-        category = category[helperFunc.getRandomNum(0, category.length)];
-        return json[category][
-          helperFunc.getRandomNum(0, json[category].length)
-        ];
-      })
+      .then((data) => setResponses(data))
       .catch((e) => {
         console.log("Error getting message");
         console.log(e);
-        return "Sorry, could not understand you...";
+
+        setResponses(null);
       });
+  }, []);
+
+  const getBotResponse = async () => {
+    console.log(responses);
+    if (responses === null) return "Sorry, could you say that again?";
+    //fallback in case the fetch didnt happen
+
+    let category = Object.keys(responses);
+    category = category[helperFunc.getRandomNum(0, category.length)];
+    return responses[category][
+      helperFunc.getRandomNum(0, responses[category].length)
+    ];
+  };
 
   useEffect(() => {
     //used for event listerner
@@ -47,18 +56,16 @@ function App() {
         }
       });
 
+    document.title = `Chatting with ${botName}`;
+
     return () => {
       removeEventListener("keydown", keyEnter);
     };
   }, []);
 
-  useEffect(() => {
-    setUserName("Guest"); //for now, later on, will add log in feature
-  }, [userName]);
-
   const handleSendMsg = async (e) => {
     if (msg.trim() === "") return;
-
+    debugger;
     e.target.disabled = true;
     setMessages((m) => [...m, { msg: msg, bot: false, user: userName }]);
     setMsg("");
@@ -71,7 +78,10 @@ function App() {
 
     await helperFunc.waitThisLong(thinkingTime);
     const botMessage = await getBotResponse();
-    setMessages((m) => [...m.slice(0, -1), {msg: botMessage, bot : true, user : botName}]);
+    setMessages((m) => [
+      ...m.slice(0, -1),
+      { msg: botMessage, bot: true, user: botName },
+    ]);
 
     e.target.disabled = false;
   };
