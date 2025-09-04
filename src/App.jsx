@@ -3,6 +3,7 @@ import "./App.css";
 import Chat from "./components/Chat";
 import React from "react";
 import * as helperFunc from "./scripts/helperFunctions";
+import {getTone} from "./scripts/exampleBackend";
 
 const thinkingTime = 1000; // to pretend getting a response, for now
 const getMsg = 500;
@@ -20,7 +21,7 @@ function App() {
     },
   ]);
   const [responses, setResponses] = useState(null);
-
+  
   useEffect(() => {
     fetch("/assets/index.json")
       .then((d) => d.json())
@@ -28,9 +29,10 @@ function App() {
       .catch((e) => {
         console.log("Error getting message");
         console.log(e);
-
         setResponses(null);
       });
+
+
   }, []);
 
   const getBotResponse = async () => {
@@ -38,11 +40,19 @@ function App() {
     if (responses === null) return "Sorry, could you say that again?";
     //fallback in case the fetch didnt happen
 
-    let category = Object.keys(responses);
-    category = category[helperFunc.getRandomNum(0, category.length)];
-    return responses[category][
-      helperFunc.getRandomNum(0, responses[category].length)
-    ];
+
+    const categories = getTone(msg);
+    let returner = "";
+
+    categories["msg"].forEach(tone =>
+    {
+      const category = `${tone}-responses`;
+      returner += `${responses[category][
+        helperFunc.getRandomNum(0, responses[category].length)
+      ]} `
+    });
+
+    return returner;
   };
 
   useEffect(() => {
@@ -64,10 +74,12 @@ function App() {
   }, []);
 
   const handleSendMsg = async (e) => {
+    
+    
     if (msg.trim() === "") return;
-    debugger;
     e.target.disabled = true;
     setMessages((m) => [...m, { msg: msg, bot: false, user: userName }]);
+    const botMessage = await getBotResponse(msg);
     setMsg("");
 
     await helperFunc.waitThisLong(getMsg);
@@ -77,7 +89,6 @@ function App() {
     ]);
 
     await helperFunc.waitThisLong(thinkingTime);
-    const botMessage = await getBotResponse();
     setMessages((m) => [
       ...m.slice(0, -1),
       { msg: botMessage, bot: true, user: botName },
@@ -113,7 +124,10 @@ function App() {
             onChange={(e) => setMsg(e.target.value)}
             id="chat-msg"
           ></textarea>
-          <button onClick={handleSendMsg} id="chat-btn" ref={btnElement}>
+          <button onClick={handleSendMsg} 
+                  id="chat-btn" 
+                  ref={btnElement}
+                  >
             Send
           </button>
         </div>

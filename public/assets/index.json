@@ -34,5 +34,17 @@
         "I'm having trouble understanding.",
         "Can you give me more details?",
         "I'm not sure what you mean."
+    ],
+    "greeting-responses": [
+        "Hello!",
+        "Hi there!",
+        "Hey!",
+        "Greetings!",
+        "Good to see you!",
+        "Hi, how can I help you?",
+        "Hello, nice to meet you!",
+        "Hey there, how are you?",
+        "Hi! What can I do for you?",
+        "Hello! How's your day going?"
     ]
 }
