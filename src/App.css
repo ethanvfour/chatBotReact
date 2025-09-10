@@ -54,6 +54,12 @@
 #chat-btn
 {
   width: 20%;
+  transform: opacity 0.3s ease-in-out,background-color 5s ease-in-out;
+}
+
+#chat-btn:disabled
+{
+  background-color: grey;
 }
 
 #Screen {

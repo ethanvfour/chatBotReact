@@ -127,6 +127,7 @@ function App() {
           <button onClick={handleSendMsg} 
                   id="chat-btn" 
                   ref={btnElement}
+                  disabled={msg.trim() === ""}
                   >
             Send
           </button>
